@@ -56,7 +56,29 @@ export default function Home({ navigation }) {
 
   const __renderItem = ({ item, index }) => {
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('Menu1', item)} style={{
+      <TouchableOpacity onLongPress={() => {
+        Alert.alert(
+          "Sociolis",
+          "Are you sure you want to delete this item?",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            {
+              text: "OK", onPress: () => {
+                axios.post(apiURL + 'kelas_hapus.php', {
+                  id_kelas: item.id
+                }).then(res => {
+                  console.log(res.data)
+                  getDataTransaction();
+                })
+              }
+            }
+          ]
+        );
+      }} onPress={() => navigation.navigate('Menu1', item)} style={{
         flex: 1,
         backgroundColor: colors.success,
         padding: 10,
@@ -231,6 +253,13 @@ export default function Home({ navigation }) {
               setKirim({
                 ...kirim,
                 nama_kelas: x
+              })
+            }} />
+            <MyGap jarak={20} />
+            <MyInput label="School" onChangeText={x => {
+              setKirim({
+                ...kirim,
+                nama_sekolah: x
               })
             }} />
             <MyGap jarak={20} />

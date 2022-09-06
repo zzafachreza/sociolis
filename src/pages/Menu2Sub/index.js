@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image, Linking } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { apiURL, dataLagu, dataSambung, datasambungSuara, dataSuara, getData } from '../../utils/localStorage'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -26,7 +26,7 @@ export default function ({ navigation, route }) {
         axios.post(apiURL + 'soal.php', {
             level: level,
         }).then(res => {
-            // console.log('response', res.data);
+            console.log('response', res.data);
             setSoal(res.data);
         })
     }, [])
@@ -92,7 +92,7 @@ export default function ({ navigation, route }) {
 
 
 
-    const MySoal = ({ no, tanya, a, b, c, d, jawab }) => {
+    const MySoal = ({ no, tanya, a, b, c, d, jawab, gambar, sumber }) => {
         return (
             <View>
                 <View style={{
@@ -102,10 +102,27 @@ export default function ({ navigation, route }) {
                         fontFamily: fonts.secondary[600],
                         fontSize: windowWidth / 25
                     }}>{no}. </Text>
-                    <Text style={{
-                        fontFamily: fonts.secondary[400],
-                        fontSize: windowWidth / 25
-                    }}>{tanya}</Text>
+                    <View>
+                        {gambar != 'https://sociolis.zavalabs.com/' && <Image style={{
+                            width: '100%',
+                            height: 200,
+                            borderRadius: 10,
+                            resizeMode: 'contain'
+                        }} source={{
+                            uri: gambar
+                        }} />}
+
+                        {gambar != 'https://sociolis.zavalabs.com/' && <TouchableOpacity onPress={() => Linking.openURL(sumber)}><Text style={{
+                            fontFamily: fonts.secondary[400],
+                            fontSize: windowWidth / 30,
+                            color: colors.primary,
+                            marginVertical: 5
+                        }}>Sumber : {sumber}</Text></TouchableOpacity>}
+                        <Text style={{
+                            fontFamily: fonts.secondary[400],
+                            fontSize: windowWidth / 25
+                        }}>{tanya}</Text>
+                    </View>
                 </View>
                 <View style={{ marginVertical: 5, }}>
 
@@ -120,7 +137,7 @@ export default function ({ navigation, route }) {
                             [no]: a
                         })
                     }} style={pilih[no] == a ? styles.cek : styles.bulat}>
-                        <Text style={pilih[no] == a ? styles.txtOK : styles.txt}>{a}</Text>
+                        <Text style={pilih[no] == a ? styles.txtOK : styles.txt}>A. {a}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => {
@@ -133,7 +150,7 @@ export default function ({ navigation, route }) {
                             [no]: b
                         })
                     }} style={pilih[no] == b ? styles.cek : styles.bulat}>
-                        <Text style={pilih[no] == b ? styles.txtOK : styles.txt}>{b}</Text>
+                        <Text style={pilih[no] == b ? styles.txtOK : styles.txt}>B. {b}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => {
@@ -146,7 +163,7 @@ export default function ({ navigation, route }) {
                             [no]: c
                         })
                     }} style={pilih[no] == c ? styles.cek : styles.bulat}>
-                        <Text style={pilih[no] == c ? styles.txtOK : styles.txt}>{c}</Text>
+                        <Text style={pilih[no] == c ? styles.txtOK : styles.txt}>C. {c}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => {
@@ -159,7 +176,7 @@ export default function ({ navigation, route }) {
                             [no]: d
                         })
                     }} style={pilih[no] == d ? styles.cek : styles.bulat}>
-                        <Text style={pilih[no] == d ? styles.txtOK : styles.txt}>{d}</Text>
+                        <Text style={pilih[no] == d ? styles.txtOK : styles.txt}>D. {d}</Text>
                     </TouchableOpacity>
 
                 </View>
@@ -177,7 +194,7 @@ export default function ({ navigation, route }) {
 
                 {soal.map((item, index) => {
                     return (
-                        <MySoal no={index + 1} tanya={item.pertanyaan} jawab={item.betul} a={item.a} b={item.b} c={item.c} d={item.d} />
+                        <MySoal no={index + 1} gambar={item.image} sumber={item.sumber} tanya={item.pertanyaan} jawab={item.betul} a={item.a} b={item.b} c={item.c} d={item.d} />
                     )
                 })}
 

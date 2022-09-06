@@ -46,6 +46,9 @@ export default function ({ navigation, route }) {
 
         }).then(res => {
             console.warn('response server', res.data);
+            setTimeout(() => {
+                navigation.replace('Menu2')
+            }, 2000)
         })
 
     }, [])

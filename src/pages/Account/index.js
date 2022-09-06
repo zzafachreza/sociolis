@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { colors, fonts, windowWidth } from '../../utils'
 import { MyButton, MyGap } from '../../components'
 import { TouchableOpacity } from 'react-native'
-import { getData } from '../../utils/localStorage'
+import { getData, storeData } from '../../utils/localStorage'
 
 export default function ({ navigation }) {
 
