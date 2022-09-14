@@ -48,7 +48,9 @@ export default function ({ navigation }) {
 
             <TouchableOpacity onPress={() => {
 
-                if (open.level_1 > 0) {
+
+
+                if (open.level_1 > 0 && open.nilai_1 == 0) {
 
                     navigation.navigate('Menu2Sub', {
                         user: item,
@@ -61,7 +63,7 @@ export default function ({ navigation }) {
                     })
                 }
 
-            }} style={styles.kotak}>
+            }} style={open.nilai_1 > 0 ? styles.kotakDone : styles.kotak}>
 
                 <View style={{
                     flex: 1,
@@ -70,15 +72,21 @@ export default function ({ navigation }) {
                     <Text style={{
                         fontFamily: fonts.secondary[600],
                         fontSize: 15,
-                        color: colors.black
+                        color: open.nilai_1 > 0 ? colors.white : colors.black
                     }}>LEVEL 1</Text>
                 </View>
             </TouchableOpacity>
 
 
             <TouchableOpacity onPress={() => {
+                if (open.nilai_1 >= 35 && open.nilai_2 > 0) {
 
-                if (open.nilai_1 >= 35 > 0) {
+                    showMessage({
+                        type: 'danger',
+                        message: 'Maaf Anda Tidak bisa membuka level ini'
+                    })
+                }
+                else if (open.nilai_1 > 0) {
 
                     navigation.navigate('Menu2Sub', {
                         user: item,
@@ -91,7 +99,7 @@ export default function ({ navigation }) {
                     })
                 }
 
-            }} style={open.nilai_1 >= 35 ? styles.kotak : styles.kotak2}>
+            }} style={open.nilai_2 > 0 ? styles.kotakDone : open.nilai_1 >= 35 ? styles.kotak : styles.kotak2}>
 
                 <View style={{
                     flex: 1,
@@ -100,7 +108,7 @@ export default function ({ navigation }) {
                     <Text style={{
                         fontFamily: fonts.secondary[600],
                         fontSize: 15,
-                        color: colors.black
+                        color: open.nilai_2 > 0 ? colors.white : colors.black
                     }}>LEVEL 2</Text>
                 </View>
             </TouchableOpacity>
@@ -161,6 +169,20 @@ const styles = StyleSheet.create({
     kotak2: {
 
         backgroundColor: colors.white,
+        padding: 15,
+        borderBottomWidth: 2,
+        height: windowHeight / 8.5,
+        backgroundColor: colors.border,
+        elevation: 2,
+        borderBottomColor: colors.black,
+        marginVertical: 5,
+
+        flexDirection: 'row'
+
+    },
+    kotakDone: {
+
+        backgroundColor: '#9A9D8D',
         padding: 15,
         borderBottomWidth: 2,
         height: windowHeight / 8.5,

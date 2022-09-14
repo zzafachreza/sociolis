@@ -17,6 +17,7 @@ import {
   Menu2,
   Menu2Sub,
   Register2,
+  Lupa,
 } from '../pages';
 import { colors } from '../utils';
 
@@ -63,6 +64,18 @@ export default function Router() {
       <Stack.Screen
         name="Login"
         component={Login}
+        options={{
+          headerShown: false,
+          // headerTitle: 'Detail',
+          headerStyle: {
+            backgroundColor: colors.primary,
+          },
+          headerTintColor: '#fff',
+        }}
+      />
+      <Stack.Screen
+        name="Lupa"
+        component={Lupa}
         options={{
           headerShown: false,
           // headerTitle: 'Detail',

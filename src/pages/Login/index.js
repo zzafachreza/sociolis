@@ -109,6 +109,21 @@ export default function ({ navigation }) {
 
           />}
 
+          <TouchableOpacity onPress={() => {
+            navigation.navigate('Lupa')
+          }} style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: 10,
+            padding: 10,
+          }}>
+            <Text style={{
+              color: colors.white,
+              fontFamily: fonts.primary[600],
+              fontSize: windowWidth / 25,
+            }}>Forgot Password?</Text>
+          </TouchableOpacity>
+
         </View>
         {loading && <View style={{
           flex: 1,

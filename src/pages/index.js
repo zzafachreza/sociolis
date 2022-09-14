@@ -13,6 +13,7 @@ import Jenis from './Jenis';
 import Menu2 from './Menu2';
 import Menu2Sub from './Menu2Sub';
 import Register2 from './Register2';
+import Lupa from './Lupa';
 
 
 
@@ -41,5 +42,6 @@ export {
   Jenis,
   Menu2,
   Menu2Sub,
-  Register2
+  Register2,
+  Lupa
 };
