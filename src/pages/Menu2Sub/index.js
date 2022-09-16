@@ -94,9 +94,13 @@ export default function ({ navigation, route }) {
 
     const MySoal = ({ no, tanya, a, b, c, d, jawab, gambar, sumber }) => {
         return (
-            <View>
+            <View style={{
+                marginVertical: 15,
+            }}>
                 <View style={{
-                    flexDirection: 'row'
+                    flexDirection: 'row',
+
+                    paddingHorizontal: 10,
                 }}>
                     <Text style={{
                         fontFamily: fonts.secondary[600],
@@ -120,11 +124,13 @@ export default function ({ navigation, route }) {
                         }}>Sumber : {sumber}</Text></TouchableOpacity>}
                         <Text style={{
                             fontFamily: fonts.secondary[400],
-                            fontSize: windowWidth / 25
+                            fontSize: windowWidth / 28,
+                            textAlign: 'justify',
+                            maxWidth: '98%'
                         }}>{tanya}</Text>
                     </View>
                 </View>
-                <View style={{ marginVertical: 5, }}>
+                <View style={{ marginVertical: 5, marginHorizontal: 20, }}>
 
                     <TouchableOpacity onPress={() => {
                         setJawaban({
@@ -222,7 +228,6 @@ const styles = StyleSheet.create({
     },
     cek: {
         padding: 10,
-        borderWidth: 1,
         overflow: 'hidden',
         borderRadius: 10,
         borderColor: colors.primary,
@@ -231,11 +236,11 @@ const styles = StyleSheet.create({
     txt: {
         fontFamily: fonts.secondary[400],
         color: colors.black,
-        fontSize: windowWidth / 25
+        fontSize: windowWidth / 28
     },
     txtOK: {
         fontFamily: fonts.secondary[600],
         color: colors.white,
-        fontSize: windowWidth / 25
+        fontSize: windowWidth / 28
     }
 })
