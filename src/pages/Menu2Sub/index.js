@@ -8,9 +8,10 @@ import { MyButton, MyGap } from '../../components';
 import { Icon } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import axios from 'axios';
-
+import { useIsFocused } from '@react-navigation/native';
 
 export default function ({ navigation, route }) {
+    const isFocused = useIsFocused();
 
     const [soal, setSoal] = useState([]);
 
@@ -23,13 +24,15 @@ export default function ({ navigation, route }) {
     const level = route.params.level;
 
     useEffect(() => {
-        axios.post(apiURL + 'soal.php', {
-            level: level,
-        }).then(res => {
-            console.log('response', res.data);
-            setSoal(res.data);
-        })
-    }, [])
+        if (isFocused) {
+            axios.post(apiURL + 'soal.php', {
+                level: route.params.level,
+            }).then(res => {
+                console.log('response', res.data);
+                setSoal(res.data);
+            })
+        }
+    }, [isFocused])
 
 
 
@@ -80,6 +83,7 @@ export default function ({ navigation, route }) {
                 navigation.navigate('STentang', user);
             })
         } else {
+            setSoal([]);
             navigation.navigate('SHasil', {
                 jawaban: jawaban,
                 level: level,
