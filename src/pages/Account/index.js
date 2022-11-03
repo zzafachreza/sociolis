@@ -41,7 +41,7 @@ export default function ({ navigation }) {
                     fontFamily: fonts.primary[600],
                     fontSize: windowWidth / 25,
                     textAlign: 'center'
-                }}>Hi {user.nama_lengkap} ! Are ready for joining a game in Socialis? The game will run for 60 minutes. You have 3 levels consisting of level 1 which will start at numbers 1 to 10,
+                }}>Hi {user.nama_lengkap} ! Are you ready for joining a game in Socialis? The game will run for 60 minutes. You have 3 levels consisting of level 1 which will start at numbers 1 to 10,
                     level 2 numbers 11 to 15, and level 3 numbers 16 to 20. Before start the game please check your identity. Make sure it is correct. If you are ready, click “start” and Good luck!</Text>
 
             </View>

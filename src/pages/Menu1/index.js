@@ -19,7 +19,7 @@ import { Icon, ListItem, Button } from 'react-native-elements';
 
 import 'intl';
 import 'intl/locale-data/jsonp/en';
-import { MyButton } from '../../components';
+import { MyButton, MyGap } from '../../components';
 const wait = timeout => {
     return new Promise(resolve => {
         setTimeout(resolve, timeout);
@@ -200,6 +200,7 @@ export default function ({ navigation, route }) {
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                 />
+                <MyGap jarak={30} />
             </ScrollView>
             <View style={{
                 padding: 10,

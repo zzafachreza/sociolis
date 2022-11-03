@@ -95,7 +95,7 @@ export default function ({ navigation, route }) {
                             marginVertical: 10,
                             fontFamily: fonts.primary[600],
                             fontSize: windowWidth / 20,
-                        }}>{parseFloat(user.nilai_1) + parseFloat(user.nilai_2) + parseFloat(user.nilai_3)}</Text>
+                        }}>{20 - (100 - (parseFloat(user.nilai_1) + parseFloat(user.nilai_2) + parseFloat(user.nilai_3))) / 5}</Text>
                     </View>
                     <Text style={{
                         color: colors.black,
