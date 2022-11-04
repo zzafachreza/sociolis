@@ -26,9 +26,9 @@ export default function ({ navigation, route }) {
     useEffect(() => {
         if (isFocused) {
             axios.post(apiURL + 'soal.php', {
-                level: route.params.level,
+                level: level,
             }).then(res => {
-                console.log('response', res.data);
+                console.log('response' + level, res.data);
                 setSoal(res.data);
             })
         }
@@ -69,10 +69,11 @@ export default function ({ navigation, route }) {
 
             let total = 0;
 
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= 5; i++) {
                 total += parseInt(jawaban[i]);
 
             }
+
 
             axios.post(apiURL + 'add.php', {
                 fid_murid: user.id_murid,
@@ -83,6 +84,7 @@ export default function ({ navigation, route }) {
                 navigation.navigate('STentang', user);
             })
         } else {
+            console.warn(jawaban);
             setSoal([]);
             navigation.navigate('SHasil', {
                 jawaban: jawaban,
@@ -208,8 +210,6 @@ export default function ({ navigation, route }) {
                     </>
                 )}
 
-
-
                 {level == 2 && no == 3 && (
 
                     <>
@@ -271,7 +271,7 @@ export default function ({ navigation, route }) {
                         <Text style={{
                             fontFamily: fonts.secondary[600],
                             fontSize: windowWidth / 25
-                        }}>Soal Nomor 5-6</Text>
+                        }}>Soal Nomor 1-2</Text>
                         <Image source={require('../../assets/gbr3.jpg')}
                             style={{
                                 width: '100%',
@@ -382,6 +382,13 @@ export default function ({ navigation, route }) {
                             fontFamily: fonts.secondary[600],
                             fontSize: windowWidth / 25
                         }}>Soal Nomor 1-4</Text>
+                        <Text style={{
+                            fontFamily: fonts.secondary[600],
+                            fontSize: windowWidth / 30,
+                            textAlign: 'center'
+                        }}>
+                            Sejarah Berdirinya ASEAN
+                        </Text>
                         <Text style={{
                             fontFamily: fonts.secondary[400],
                             fontSize: windowWidth / 30,
@@ -518,6 +525,7 @@ export default function ({ navigation, route }) {
         <SafeAreaView style={{
             padding: 10,
         }}>
+
             <ScrollView showsVerticalScrollIndicator={false}>
 
 

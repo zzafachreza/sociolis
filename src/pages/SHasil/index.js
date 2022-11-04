@@ -59,10 +59,19 @@ export default function ({ navigation, route }) {
 
     let total = 0;
 
-    for (let i = 1; i <= 10; i++) {
-        total += parseInt(route.params.jawaban[i]);
 
+    if (level == 1) {
+        for (let i = 1; i <= 10; i++) {
+            total += parseInt(route.params.jawaban[i]);
+
+        }
+    } else {
+        for (let i = 1; i <= 5; i++) {
+            total += parseInt(route.params.jawaban[i]);
+
+        }
     }
+
 
 
 
